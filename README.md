@@ -16,6 +16,34 @@
   specific language governing permissions and limitations
   under the License.
 -->
+This compiles under freeBSD
+```sh
+cd cpp
+mkdir release
+cd release
+cmake .. \
+  -DCMAKE_INSTALL_PREFIX=/usr/local \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DARROW_PARQUET=ON \
+  -DARROW_WITH_UTF8PROC=ON \
+  -DARROW_BUILD_STATIC=OFF \
+  -DARROW_BUILD_SHARED=ON \
+  -DARROW_COMPUTE=ON \
+  -DARROW_DATASET=ON \
+  -DARROW_FILESYSTEM=ON \
+  -DARROW_JSON=ON \
+  -DARROW_CSV=ON \
+  -DARROW_PYTHON=ON \
+  -DARROW_USE_SYMVER=OFF \
+  -DARROW_USE_SYMVER_IF_AVAILABLE=OFF \
+  -DPARQUET_USE_SYMVER=OFF \
+  -DPARQUET_BUILD_EXECUTABLES=OFF \
+  -DPython_EXECUTABLE=$(which python3)
+make -j$(sysctl -n hw.ncpu)
+make install
+
+```
+
 
 # Apache Arrow
 
