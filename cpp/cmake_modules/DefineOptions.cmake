@@ -20,6 +20,10 @@ macro(set_option_category name)
   list(APPEND "ARROW_OPTION_CATEGORIES" ${name})
 endmacro()
 
+set(ARROW_USE_SYMVER_IF_AVAILABLE OFF)
+set(ARROW_HAVE_SYMBOLS_VISIBILITY OFF)
+
+
 function(check_description_length name description)
   foreach(description_line ${description})
     string(LENGTH ${description_line} line_length)
@@ -760,6 +764,10 @@ endmacro()
 
 #----------------------------------------------------------------------
 # Compute default values for omitted variables
+
+set(ARROW_USE_SYMVER_IF_AVAILABLE OFF)
+set(ARROW_HAVE_SYMBOLS_VISIBILITY OFF)
+
 
 if(NOT ARROW_GIT_ID)
   execute_process(COMMAND "git" "log" "-n1" "--format=%H"

@@ -279,10 +279,12 @@ if(ARROW_WITH_OPENTELEMETRY)
   list(APPEND PARQUET_SHARED_PRIVATE_LINK_LIBS ${ARROW_OPENTELEMETRY_LIBS})
 endif()
 
-if(CXX_LINKER_SUPPORTS_VERSION_SCRIPT)
-  set(PARQUET_SHARED_LINK_FLAGS
-      "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/symbols.map")
-endif()
+
+
+#if(CXX_LINKER_SUPPORTS_VERSION_SCRIPT)
+#  set(PARQUET_SHARED_LINK_FLAGS
+#      "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/symbols.map")
+#endif()
 
 add_arrow_lib(parquet
               CMAKE_PACKAGE_NAME
@@ -293,8 +295,6 @@ add_arrow_lib(parquet
               ${PARQUET_SRCS}
               OUTPUTS
               PARQUET_LIBRARIES
-              SHARED_LINK_FLAGS
-              ${PARQUET_SHARED_LINK_FLAGS}
               SHARED_LINK_LIBS
               ${PARQUET_SHARED_LINK_LIBS}
               SHARED_PRIVATE_LINK_LIBS
